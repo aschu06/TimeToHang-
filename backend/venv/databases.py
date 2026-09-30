@@ -2,14 +2,14 @@ import sqlite3
 
 file = "app.db"
 
-def connection():
-    connection = sqlite3.connect(file)
-    return connection
+def get_database():
+    database = sqlite3.connect(file)
+    return database
 
 def create_tables():
-    connection = connectition()
-    connection.execute("CREATE TABLE IF NOT EXISTS events (id INTEGER PRIMARY KEY, title TEXT, start_date TEXT, end_date TEXT)")
-    connection.execute("CREATE TABLE IF NOT EXISTS participants (id INTEGER PRIMARY KEY, event_id INTEGER, name TEXT)")
-    connection.execute("CREATE TABLE IF NOT EXISTS availability (participant_id INTEGER, slot_start TEXT)")
-    connection.commit()
-    connection.close()
+    database = get_database()
+    database.execute("CREATE TABLE IF NOT EXISTS events (id INTEGER PRIMARY KEY, title TEXT, start_date TEXT, end_date TEXT)")
+    database.execute("CREATE TABLE IF NOT EXISTS person (id INTEGER PRIMARY KEY, event_id INTEGER, name TEXT)")
+    database.execute("CREATE TABLE IF NOT EXISTS availability (person_id INTEGER, start_time TEXT, end_time TEXT)")
+    database.commit()
+    database.close()
