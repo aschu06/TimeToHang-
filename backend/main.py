@@ -1,6 +1,6 @@
 from fastapi import FastAPI 
-from database import get_database
-from database import create_tables
+from databases import get_database
+from databases import create_tables
 
 app = FastAPI()
 create_tables()
